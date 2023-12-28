@@ -1,5 +1,6 @@
 package com.example.demo.post.infrastructure;
 
+import com.example.demo.post.domain.Post;
 import com.example.demo.post.service.port.PostRepository;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -12,12 +13,12 @@ public class PostRepositoryImpl implements PostRepository {
     private final PostJpaRepository postJpaRepository;
 
     @Override
-    public Optional<PostEntity> findById(long id) {
-        return postJpaRepository.findById(id);
+    public Optional<Post> findById(long id) {
+        return postJpaRepository.findById(id).map(Post -> Post.tomodel());
     }
 
     @Override
-    public PostEntity save(PostEntity postEntity) {
-        return postJpaRepository.save(postEntity);
+    public Post save(Post post) {
+        return postJpaRepository.save(PostEntity.fromModel(post)).tomodel();
     }
 }
