@@ -30,6 +30,13 @@ public class UserJpaRepositoryTest {
 
         // then
         assertThat(result.isPresent()).isTrue();
+        assertThat(result.get().getId()).isEqualTo(1);
+        assertThat(result.get().getEmail()).isEqualTo("djajsl54@naver.com");
+        assertThat(result.get().getNickname()).isEqualTo("seongmik");
+        assertThat(result.get().getAddress()).isEqualTo("Seoul");
+        assertThat(result.get().getCertificationCode()).isEqualTo("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+        assertThat(result.get().getStatus()).isEqualTo(UserStatus.ACTIVE);
+        assertThat(result.get().getLastLoginAt()).isEqualTo(0);
     }
 
     @Test
@@ -52,6 +59,13 @@ public class UserJpaRepositoryTest {
 
         // then
         assertThat(result.isPresent()).isTrue();
+        assertThat(result.get().getId()).isEqualTo(1);
+        assertThat(result.get().getEmail()).isEqualTo("djajsl54@naver.com");
+        assertThat(result.get().getNickname()).isEqualTo("seongmik");
+        assertThat(result.get().getAddress()).isEqualTo("Seoul");
+        assertThat(result.get().getCertificationCode()).isEqualTo("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+        assertThat(result.get().getStatus()).isEqualTo(UserStatus.ACTIVE);
+        assertThat(result.get().getLastLoginAt()).isEqualTo(0);
     }
 
     @Test
