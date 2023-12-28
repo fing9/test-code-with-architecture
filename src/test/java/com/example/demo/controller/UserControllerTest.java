@@ -40,7 +40,7 @@ public class UserControllerTest {
     @Autowired
     private UserRepository userRepository;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void 사용자는_특정_유저의_정보를_개인정보는_소거된_상태로_전달_받을_수_있다() throws Exception {
