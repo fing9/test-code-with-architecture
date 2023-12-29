@@ -1,7 +1,9 @@
-package com.example.demo.post.infrastructure;
+package com.example.demo.medium;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.example.demo.post.infrastructure.PostEntity;
+import com.example.demo.post.infrastructure.PostJpaRepository;
 import com.example.demo.user.domain.UserStatus;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
