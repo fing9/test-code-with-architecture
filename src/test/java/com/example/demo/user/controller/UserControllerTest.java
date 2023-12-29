@@ -37,7 +37,7 @@ public class UserControllerTest {
         ResponseEntity<UserResponse> result = UserController.builder()
                 .userService(testContainer.userService)
                 .build()
-                .getUserById(1);
+                .getById(1);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
@@ -61,7 +61,7 @@ public class UserControllerTest {
             UserController.builder()
                     .userService(testContainer.userService)
                     .build()
-                    .getUserById(123456789);
+                    .getById(123456789);
         }).isInstanceOf(ResourceNotFoundException.class);
     }
 
@@ -88,7 +88,7 @@ public class UserControllerTest {
         ResponseEntity<UserResponse> user = UserController.builder()
                 .userService(testContainer.userService)
                 .build()
-                .getUserById(1);
+                .getById(1);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(302));

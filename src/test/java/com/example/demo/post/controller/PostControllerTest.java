@@ -46,7 +46,7 @@ public class PostControllerTest {
                 .postService(testContainer.postService)
                 .userController(testContainer.userController)
                 .build()
-                .getPostById(1);
+                .getById(1);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
@@ -74,7 +74,7 @@ public class PostControllerTest {
                     .postService(testContainer.postService)
                     .userController(testContainer.userController)
                     .build()
-                    .getPostById(1);
+                    .getById(1);
         }).isInstanceOf(ResourceNotFoundException.class);
     }
 
@@ -109,7 +109,7 @@ public class PostControllerTest {
                 .postService(testContainer.postService)
                 .userController(testContainer.userController)
                 .build()
-                .updatePost(1, postUpdate);
+                .update(1, postUpdate);
 
         // then
         assertThat(result.getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));

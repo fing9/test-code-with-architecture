@@ -159,9 +159,7 @@ public class UserServiceImplTest {
         // given
         // when
         // then
-        assertThatThrownBy(() -> {
-            userServiceImpl.verifyEmail(2, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab");
-        }).isInstanceOf(CertificationCodeNotMatchedException.class);
+        assertThatThrownBy(() -> userServiceImpl.verifyEmail(2, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab")).isInstanceOf(CertificationCodeNotMatchedException.class);
     }
 
 }
