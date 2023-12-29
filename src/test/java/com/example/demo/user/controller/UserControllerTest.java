@@ -35,7 +35,7 @@ public class UserControllerTest {
 
         // when
         ResponseEntity<UserResponse> result = UserController.builder()
-                .userReadService(testContainer.userReadService)
+                .userService(testContainer.userService)
                 .build()
                 .getUserById(1);
 
@@ -59,7 +59,7 @@ public class UserControllerTest {
         // then
         assertThatThrownBy(() -> {
             UserController.builder()
-                    .userReadService(testContainer.userReadService)
+                    .userService(testContainer.userService)
                     .build()
                     .getUserById(123456789);
         }).isInstanceOf(ResourceNotFoundException.class);
@@ -82,11 +82,11 @@ public class UserControllerTest {
 
         // when
         ResponseEntity<Void> result = UserController.builder()
-                .authenticationService(testContainer.authenticationService)
+                .userService(testContainer.userService)
                 .build()
                 .verifyEmail(1L, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab");
         ResponseEntity<UserResponse> user = UserController.builder()
-                .userReadService(testContainer.userReadService)
+                .userService(testContainer.userService)
                 .build()
                 .getUserById(1);
 
@@ -119,7 +119,7 @@ public class UserControllerTest {
         // then
         assertThatThrownBy(() -> {
             UserController.builder()
-                    .authenticationService(testContainer.authenticationService)
+                    .userService(testContainer.userService)
                     .build()
                     .verifyEmail(1L, "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaac");
         }).isInstanceOf(CertificationCodeNotMatchedException.class);
@@ -143,8 +143,7 @@ public class UserControllerTest {
 
         // when
         ResponseEntity<MyProfileResponse> result = UserController.builder()
-                .userReadService(testContainer.userReadService)
-                .authenticationService(testContainer.authenticationService)
+                .userService(testContainer.userService)
                 .build()
                 .getMyInfo("kok202@naver.com");
 
@@ -176,8 +175,7 @@ public class UserControllerTest {
 
         // when
         ResponseEntity<MyProfileResponse> result = UserController.builder()
-                .userReadService(testContainer.userReadService)
-                .userUpdateService(testContainer.userUpdateService)
+                .userService(testContainer.userService)
                 .build()
                 .updateMyInfo("kok202@naver.com", UserUpdate.builder()
                         .nickname("kok303")

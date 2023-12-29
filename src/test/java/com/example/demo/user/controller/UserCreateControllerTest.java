@@ -27,7 +27,7 @@ public class UserCreateControllerTest {
 
         // when
         ResponseEntity<UserResponse> result = UserCreateController.builder()
-                .userCreateService(testContainer.userCreateService)
+                .userService(testContainer.userService)
                 .build()
                 .createUser(userCreate);
 
