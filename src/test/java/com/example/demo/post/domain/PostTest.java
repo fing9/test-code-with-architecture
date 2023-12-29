@@ -2,6 +2,7 @@ package com.example.demo.post.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.example.demo.mock.TestClockHolder;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,11 @@ public class PostTest {
                 .build();
 
         // when
-        Post post = Post.from(writer, postCreate);
+        Post post = Post.from(writer, postCreate, new TestClockHolder(1678530673958L));
 
         // then
         assertThat(post.getContent()).isEqualTo("helloworld");
+        assertThat(post.getCreatedAt()).isEqualTo(1678530673958L);
         assertThat(post.getWriter().getEmail()).isEqualTo("kok202@naver.com");
         assertThat(post.getWriter().getNickname()).isEqualTo("kok202");
         assertThat(post.getWriter().getAddress()).isEqualTo("Seoul");
@@ -53,10 +55,11 @@ public class PostTest {
                 .build();
 
         // when
-        post = post.update(postUpdate);
+        post = post.update(postUpdate, new TestClockHolder(1678530673958L));
 
         // then
         assertThat(post.getContent()).isEqualTo("foobar");
+        assertThat(post.getModifiedAt()).isEqualTo(1678530673958L);
         assertThat(post.getWriter().getEmail()).isEqualTo("kok202@naver.com");
         assertThat(post.getWriter().getNickname()).isEqualTo("kok202");
         assertThat(post.getWriter().getAddress()).isEqualTo("Seoul");
