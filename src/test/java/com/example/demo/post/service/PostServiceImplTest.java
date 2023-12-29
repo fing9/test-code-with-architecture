@@ -13,15 +13,15 @@ import com.example.demo.user.domain.UserStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PostServiceTest {
+public class PostServiceImplTest {
 
-    private PostService postService;
+    private PostServiceImpl postServiceImpl;
 
     @BeforeEach
     void init() {
         FakeUserRepository fakeUserRepository = new FakeUserRepository();
         FakePostRepository fakePostRepository = new FakePostRepository();
-        this.postService = PostService.builder()
+        this.postServiceImpl = PostServiceImpl.builder()
                 .postRepository(fakePostRepository)
                 .userRepository(fakeUserRepository)
                 .clockHolder(new TestClockHolder(1678530673958L))
@@ -59,7 +59,7 @@ public class PostServiceTest {
     void getById_는_존재하는_게시물을_내려준다() {
         // given
         // when
-        Post result = postService.getById(1);
+        Post result = postServiceImpl.getById(1);
 
         // then
         assertThat(result.getContent()).isEqualTo("helloworld");
@@ -76,7 +76,7 @@ public class PostServiceTest {
                 .build();
 
         // when
-        Post result = postService.create(postCreate);
+        Post result = postServiceImpl.create(postCreate);
 
         // then
         assertThat(result.getContent()).isEqualTo("foobar");
@@ -93,7 +93,7 @@ public class PostServiceTest {
                 .build();
 
         // when
-        Post result = postService.update(1, postUpdate);
+        Post result = postServiceImpl.update(1, postUpdate);
 
         // then
         assertThat(result.getContent()).isEqualTo("hello world!");
